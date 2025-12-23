@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Костылева Элеонора",
+  name: "Костылевой Элеоноры",
   title: "Студентка РГПУ им.Герцена ИВТ 4 курс",
   description: "Портфолио студента ИВТ 4 курса",
   accentColor: "#1d4ed8",
@@ -24,16 +24,14 @@ export const siteConfig = {
     {
       name: "3 курс",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
+        "",
       link: "https://disk.yandex.ru/d/NiDfYnJ-pnChSQ",
-      skills: ["React", "Node.js", "AWS"],
     },
     {
       name: "4 курс",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
+        "",
       link: "https://disk.yandex.ru/d/8BjzUfqDv4Dx4w",
-      skills: ["React", "Node.js", "AWS"],
     },
   ],
 
