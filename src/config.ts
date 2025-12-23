@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Костылевой Элеоноры",
-  title: "Студентка РГПУ им.Герцена ИВТ 4 курс",
-  description: "Портфолио студента ИВТ 4 курса",
+  title: "Студентки РГПУ им.Герцена ИВТ 4 курса",
+  description: "Портфолио студентки ИВТ 4 курса",
   accentColor: "#1d4ed8",
   social: {
     email: "elkostylevaa@gmail.com",
