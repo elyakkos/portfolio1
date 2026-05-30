@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # или master
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -10,21 +10,34 @@ permissions:
   pages: write
   id-token: write
 
-# Forces all JavaScript actions to execute with Node.js 24 ahead of the deadline
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1. Скачиваем репозиторий (v4 — самая стабильная и актуальная версия)
       - name: Checkout
-        uses: actions/checkout@v6 # Updated to v6
+        uses: actions/checkout@v4
 
-      - name: Install, build, and upload your site
-        uses: withastro/action@v4 # Updated to v4 for Node 24 support
+      # 2. Включаем чистую Node.js 22 (LTS) или 24
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          package-manager: npm
+          node-version: 22
+          cache: 'npm'
+
+      # 3. Устанавливаем зависимости
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Собираем Astro проект
+      - name: Build site
+        run: npm run build
+
+      # 5. Архивируем результат сборки (у Astro это папка dist)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
@@ -33,6 +46,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # 6. Публикуем на GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
